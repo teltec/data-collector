@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 
-engine = create_engine('postgresql://postgres:felipe123@localhost:5432/postgres', echo=True)
+engine = create_engine('postgresql://postgres:{}@{}:{}/{}'.format(os.getenv('DB_USER'), os.getenv('DB_URL'), os.getenv('DB_PORT'), os.getenv('DB_DATABASE')), echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
