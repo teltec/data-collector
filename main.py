@@ -39,7 +39,7 @@ class ClientsRequest():
     def insertDb(self):
 
          # *** Criando a conexão com o postgres 
-        engine = create_engine('postgresql://postgres:felipe123@localhost:5432/postgres')
+        engine = create_engine('postgresql://postgres:{}@{}:{}/{}'.format(os.getenv('DB_USER'), os.getenv('DB_URL'), os.getenv('DB_PORT'), os.getenv('DB_DATABASE')))
         Session = sessionmaker(bind=engine)
         session = Session()
 
